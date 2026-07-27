@@ -64,7 +64,9 @@ def generate_park_data(
 
     frame = pd.DataFrame(rows)
     load_cols = [c for c in frame if c.startswith("load_h")]
-    values = frame[load_cols].to_numpy()
+    # Pandas 3 may expose a read-only array; anomaly injection requires an
+    # explicit writable copy.
+    values = frame[load_cols].to_numpy(copy=True)
     corrupt = rng.random(values.shape) < anomaly_rate
     values[corrupt] *= rng.choice([0.05, 3.5], size=corrupt.sum())
     missing = rng.random(values.shape) < missing_rate
