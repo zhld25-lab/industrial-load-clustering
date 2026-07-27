@@ -41,7 +41,9 @@ class OptimizedLoadClusterer:
         y_norm = (ys - ys.min()) / max(np.ptp(ys), 1e-12)
         p1, p2 = np.array([x_norm[0], y_norm[0]]), np.array([x_norm[-1], y_norm[-1]])
         line = p2 - p1
-        distances = np.abs(np.cross(line, np.c_[x_norm, y_norm] - p1)) / max(np.linalg.norm(line), 1e-12)
+        offsets = np.c_[x_norm, y_norm] - p1
+        cross_magnitudes = np.abs(line[0] * offsets[:, 1] - line[1] * offsets[:, 0])
+        distances = cross_magnitudes / max(np.linalg.norm(line), 1e-12)
         elbow_indices = np.flatnonzero(np.isclose(distances, distances.max(), rtol=0.05))
         # Silhouette is only a tie-breaker among geometrically equivalent elbows.
         elbow_ks = [int(ks[i]) for i in elbow_indices]
