@@ -9,9 +9,25 @@ errors, relationships with weather and tariff are nonlinear, and similar daily
 patterns occur at shifted times. My pipeline repairs anomalies with weighted
 KNN, combines KPCA global nonlinear structure with graph-based local structure,
 uses DTW for time alignment, and then performs a second K-means clustering.
-I compare it against a plain K-means baseline using Adjusted Rand Index on a
-labeled synthetic benchmark, while clearly separating that benchmark from a
-claim of real-world validation.
+I also built a normalized SQLite layer for facility metadata, hourly load,
+onsite generation, weather, tariff, and data-quality records. Because the
+original industrial project was private, I cannot disclose its operational
+data. This public prototype therefore uses a labeled synthetic benchmark, and
+I clearly separate those simulated results from real-world validation.
+
+## Confidentiality statement
+
+Use this wording early in the interview:
+
+> The original industrial project was private, so I cannot share operational
+> data or facility-specific details. For this demonstration, I created a fully
+> synthetic dataset that follows a comparable schema and contains controlled
+> load patterns, missing values, and anomalies. It lets me show the complete
+> database, analytics, and clustering workflow without exposing protected
+> information. All metrics shown here are results on simulated data only.
+
+Do not call the dataset “anonymized real data.” Anonymized data still originates
+from real operations; this dataset does not.
 
 ## Likely questions
 
@@ -51,6 +67,15 @@ tariff, calendar, equipment, and distributed-generation data by timestamp,
 prevent future leakage with time-based splits, monitor missingness and drift,
 and validate clusters with facility engineers.
 
+### Why use a database instead of only CSV files?
+
+CSV is useful for exchange, but it does not enforce entity relationships,
+types, uniqueness, or query performance. SQLite lets me separate park,
+facility, and measurement entities; enforce primary and foreign keys; index
+timestamps and quality flags; and expose reusable hourly and daily views. For
+production scale, I would migrate the same logical model to PostgreSQL or a
+time-series platform and add access control, audit logging, and retention rules.
+
 ### What would you improve next?
 
 Run repeated seeds and bootstrap confidence intervals, compare against
@@ -62,5 +87,6 @@ opportunities, and package the inference pipeline as a monitored service.
 Do not say the attached patent supplied this Python code or dataset. Do not
 claim a 21% gain unless the exact command, seed range, baseline, metric, and
 result table in this repository support it. A strong answer is: “This is my
-independent, reproducible implementation of the method described in the patent.”
-
+independent, reproducible implementation of the method described in the patent.
+The public demo uses synthetic data because the original project data is
+private.”
