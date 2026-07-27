@@ -21,6 +21,7 @@ dev = ["pytest>=8.0"]
 
 [project.scripts]
 industrial-load-demo = "industrial_load.cli:main"
+industrial-load-build-db = "industrial_load.database:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -28,4 +29,3 @@ where = ["src"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
-
