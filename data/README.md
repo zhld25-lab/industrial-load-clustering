@@ -2,26 +2,27 @@
 
 ## Disclosure
 
-**This repository contains synthetic data only.** The original industrial
-project was private, so its operational measurements, customer identifiers,
-facility details, and commercial context cannot be disclosed. Every facility,
-timestamped reading, label, anomaly, weather value, and tariff value here was
-generated for demonstration. The data must not be described as measured,
-anonymized, or production data.
+**This repository contains synthetic data only.** The full workflow was
+completed and operated in a real industrial project, but its operational
+measurements, customer identifiers, facility details, and commercial context
+are private and cannot be disclosed. Every facility, timestamped reading,
+label, anomaly, weather value, and tariff value in this public repository was
+generated for demonstration. The public data must not be described as
+measured, anonymized, or production data.
 
 Recommended interview wording:
 
-> The original project was private and subject to confidentiality constraints,
-> so I cannot share its operational data. To demonstrate the engineering
-> workflow without exposing protected information, I built a reproducible
-> synthetic dataset with similar schema and load-pattern characteristics. All
+> I completed and operated the full workflow in a real industrial project.
+> Because its operational data and facility-specific details are private, this
+> public demonstration replaces them with a reproducible synthetic dataset
+> with a comparable schema and load-pattern characteristics. All public
 > results in this repository apply only to the simulated dataset.
 
 ## Files
 
 - `synthetic_hourly_loads.csv`: denormalized, analysis-ready hourly records.
-- `industrial_load_demo.sqlite`: normalized, indexed SQLite database generated
-  locally from the same records. It is reproducible and not stored in Git.
+- `industrial_load_demo.sqlite`: checked-in, normalized, indexed SQLite
+  database generated from the same records.
 
 The checked-in sample contains 12 fictional facilities, three load-pattern
 types, and 7 days of hourly records (2,016 rows). The default rebuild expands

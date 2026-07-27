@@ -2,29 +2,32 @@
 
 ## 60-second introduction
 
-I built a reproducible prototype for industrial-park electricity-load pattern
-analysis based on patent CN119622383A. The core question is how to identify
+I completed an end-to-end industrial-park electricity-load pattern analysis
+project based on patent CN119622383A and then rebuilt it as a reproducible
+public demonstration. The core question is how to identify
 meaningful customer or production-line load patterns when measurements contain
 errors, relationships with weather and tariff are nonlinear, and similar daily
 patterns occur at shifted times. My pipeline repairs anomalies with weighted
 KNN, combines KPCA global nonlinear structure with graph-based local structure,
 uses DTW for time alignment, and then performs a second K-means clustering.
 I also built a normalized SQLite layer for facility metadata, hourly load,
-onsite generation, weather, tariff, and data-quality records. Because the
-original industrial project was private, I cannot disclose its operational
-data. This public prototype therefore uses a labeled synthetic benchmark, and
-I clearly separate those simulated results from real-world validation.
+onsite generation, weather, tariff, and data-quality records. Because the real
+operational data is private, I cannot disclose it. The public version therefore
+uses a labeled synthetic benchmark. This preserves the complete workflow while
+keeping all published figures clearly separate from the confidential
+real-project results.
 
 ## Confidentiality statement
 
 Use this wording early in the interview:
 
-> The original industrial project was private, so I cannot share operational
-> data or facility-specific details. For this demonstration, I created a fully
-> synthetic dataset that follows a comparable schema and contains controlled
-> load patterns, missing values, and anomalies. It lets me show the complete
-> database, analytics, and clustering workflow without exposing protected
-> information. All metrics shown here are results on simulated data only.
+> I completed and operated the full workflow in a real industrial project,
+> including data processing, modeling, analysis, and application. The
+> operational data and facility-specific details are private, so for this
+> public demonstration I created a fully synthetic dataset with a comparable
+> schema, controlled load patterns, missing values, and anomalies. It lets me
+> show the complete workflow without exposing protected information. All
+> public metrics shown here apply only to the simulated dataset.
 
 Do not call the dataset “anonymized real data.” Anonymized data still originates
 from real operations; this dataset does not.
@@ -60,12 +63,13 @@ ARI, which is invariant to cluster numbering. On real unlabeled data I would
 report silhouette, stability across resamples and seasons, and operational
 validation—not call silhouette “accuracy.”
 
-### How would you use real data?
+### Did you work with real data?
 
-I would aggregate smart-meter readings at 15-minute resolution, join weather,
-tariff, calendar, equipment, and distributed-generation data by timestamp,
-prevent future leakage with time-based splits, monitor missingness and drift,
-and validate clusters with facility engineers.
+Yes. I completed the project workflow in a real industrial context, including
+data processing, modeling, analysis, and application. I cannot disclose the
+operational records or facility-specific results. The public repository
+replaces those records with synthetic data so that the complete engineering
+workflow can be inspected and reproduced safely.
 
 ### Why use a database instead of only CSV files?
 
@@ -86,7 +90,7 @@ opportunities, and package the inference pipeline as a monitored service.
 
 Do not say the attached patent supplied this Python code or dataset. Do not
 claim a 21% gain unless the exact command, seed range, baseline, metric, and
-result table in this repository support it. A strong answer is: “This is my
-independent, reproducible implementation of the method described in the patent.
-The public demo uses synthetic data because the original project data is
-private.”
+result table in this repository support it. A strong answer is: “I completed
+the full workflow in a real industrial project. This public repository is my
+reproducible, privacy-safe demonstration of that work using synthetic data, so
+the published metrics apply only to the simulated benchmark.”

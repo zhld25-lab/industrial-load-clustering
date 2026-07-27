@@ -5,12 +5,13 @@ A reproducible Python implementation inspired by Chinese patent application
 on optimized K-means clustering.”
 
 > **Confidentiality and data disclosure:** the underlying industrial project
-> was private, so its operational measurements, customer information, and
-> facility details cannot be shared. This public repository uses a reproducible
-> synthetic dataset only. The supplied patent package also contains no raw
-> measurements or source code. The repository demonstrates the engineering
-> method; it does not claim that its simulated results are production
-> validation or a fixed 21% accuracy improvement.
+> and its end-to-end workflow were completed in a real industrial setting.
+> Its operational measurements, customer information, and facility details
+> cannot be shared. This public repository therefore uses a reproducible
+> synthetic dataset as a privacy-safe replacement. The supplied patent package
+> also contains no raw measurements or source code. All published metrics in
+> this repository apply only to the synthetic benchmark and are not presented
+> as the confidential real-project results or as a fixed 21% improvement.
 
 ## What the system does
 
@@ -98,15 +99,14 @@ DTW handles the same operating pattern occurring at slightly different times.
 
 **Evaluation.** ARI is used because cluster numbers are arbitrary and the
 synthetic generator supplies hidden ground-truth archetypes. Silhouette is an
-internal metric for real unlabeled deployments. These results evaluate the
-prototype against simulated labels—not a real industrial park. A single
-accuracy percentage without a labeled dataset, baseline, seeds, and confidence
-interval would not be defensible.
+internal metric for unlabeled deployments. These published results evaluate
+the public benchmark against simulated labels—not the confidential operational
+dataset. A single accuracy percentage without a labeled dataset, baseline,
+seeds, and confidence interval would not be defensible.
 
-**Production next step.** Replace the generator with 15-minute smart-meter,
-weather, tariff, equipment, and renewable-generation feeds; fit on a time-based
-training window; validate stability across seasons; then connect discovered
-patterns to peak-shaving and capacity-planning rules.
+**Research extensions.** Measure stability across seasons and random seeds,
+compare stronger clustering baselines, quantify peak-shaving and
+capacity-planning outcomes, and study transferability across facility types.
 
 ## Patent-to-code traceability
 
