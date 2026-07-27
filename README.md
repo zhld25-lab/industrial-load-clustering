@@ -63,9 +63,9 @@ The public demo assets are:
 - `data/synthetic_hourly_loads.csv`: a compact checked-in sample with 2,016
   hourly readings for 12 fictional facilities over 7 days. The build command
   expands it to 8,640 readings over 30 days by default.
-- `data/industrial_load_demo.sqlite`: the query-ready SQLite database built
-  locally from the same CSV. The binary database is reproducible and therefore
-  not versioned; run `industrial-load-build-db` to create it.
+- `data/industrial_load_demo.sqlite`: the checked-in, query-ready SQLite
+  database built from the same 7-day CSV sample. Run
+  `industrial-load-build-db` to regenerate it or create a larger 30-day copy.
 - `data/README.md`: dataset card, disclosure language, field definitions, and
   appropriate-use boundaries.
 - `sql/schema.sql`: normalized schema with constraints, foreign keys, indexes,
@@ -77,6 +77,9 @@ The relational model separates `parks`, `facilities`, and
 `load_measurements`. `dataset_metadata` stores the synthetic-data notice inside
 the database, so the disclosure travels with the artifact rather than living
 only in this README.
+
+The repository also includes deterministic example outputs in `results/` so an
+interviewer can inspect the seed-42 metrics without running the pipeline first.
 
 ```bash
 sqlite3 data/industrial_load_demo.sqlite
@@ -129,6 +132,16 @@ patterns to peak-shaving and capacity-planning rules.
   exposing WCSS for elbow inspection.
 - DTW is quadratic in curve length and should be approximated or batched for
   very large fleets.
+
+## Verification
+
+`pytest` runs unit and integration tests for generation, preprocessing, DTW,
+clustering reproducibility, database constraints/views/read-only access, asset
+export, and CLI outputs. CI enforces at least 90% line coverage for the
+`industrial_load` package and separately smoke-tests both console commands and
+Python compilation. This is strong prototype coverage, not a claim that the
+system has completed production grid validation, security testing, or
+large-scale performance testing.
 
 ## Reference
 

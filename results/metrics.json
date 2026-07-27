@@ -1,0 +1,12 @@
+{
+  "seed": 42,
+  "samples": 90,
+  "selected_clusters": 5,
+  "repaired_values": 82,
+  "kpca_components": 6,
+  "baseline_ari": 0.5615264452722317,
+  "optimized_ari": 0.6534641007179157,
+  "baseline_silhouette": 0.27007769452127506,
+  "optimized_silhouette": 0.3204184365948005,
+  "ari_relative_change_pct": 16.37280954793002
+}

@@ -16,4 +16,5 @@ jobs:
       - run: pip install -e ".[dev]"
       - run: pytest -q
       - run: industrial-load-demo --seed 42 --output /tmp/industrial-load-results
-
+      - run: industrial-load-build-db --days 2 --facilities-per-type 1 --output-dir /tmp/industrial-load-data
+      - run: python -m compileall -q app.py src scripts
