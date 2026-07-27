@@ -17,7 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dashboard = ["streamlit>=1.36", "plotly>=5.22"]
-dev = ["pytest>=8.0"]
+dev = ["pytest>=8.0", "pytest-cov>=5.0"]
 
 [project.scripts]
 industrial-load-demo = "industrial_load.cli:main"
@@ -29,3 +29,4 @@ where = ["src"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+addopts = "--cov=industrial_load --cov-report=term-missing --cov-fail-under=90"

@@ -2,6 +2,4 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv/
-results/
 data/generated/
-data/*.sqlite
